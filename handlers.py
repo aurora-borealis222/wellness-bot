@@ -1,47 +1,32 @@
+from datetime import date
+
 from aiogram import Router
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.filters import Command, CommandObject
 from aiogram.fsm.context import FSMContext
+from aiogram.types import Message
 
 import service
-from states import UserProfile
 from service import *
-
-from datetime import date
+from states import UserProfile
 
 router = Router()
 
 @router.message(Command("start"))
 async def cmd_start(message: Message):
-    await message.answer("Добро пожаловать! Я ваш бот.\nВведите /help для списка команд.")
+    await message.answer("Добро пожаловать! \nВас приветствует бот для расчёта нормы воды, калорий и трекинга активности.\n\n"
+                         + "Введите /help для списка команд.\n\nТакже для использования некоторых команд можно открыть Меню.")
 
-# Обработчик команды /help
 @router.message(Command("help"))
 async def cmd_help(message: Message):
     await message.answer(
         "Доступные команды:\n"
         "/start - Начало работы\n"
-        "/form - Пример диалога\n"
-        "/keyboard - Пример кнопок\n"
-        "/joke - Получить случайную шутку"
+        "/set_profile - Настройка профиля пользователя\n"
+        "/log_water - Логгирование воды (с параметром)\n"
+        "/log_food - Логгирование еды (с параметрами)\n"
+        "/log_workout - Логгирование тренировок (с параметрами)\n"
+        "/check_progress - Прогресс по воде и калориям"
     )
-
-@router.message(Command("keyboard"))
-async def show_keyboard(message: Message):
-    keyboard = InlineKeyboardMarkup(
-        inline_keyboard=[
-            [InlineKeyboardButton(text="Кнопка 1", callback_data="btn1")],
-            [InlineKeyboardButton(text="Кнопка 2", callback_data="btn2")],
-        ]
-    )
-    await message.answer("Выберите опцию:", reply_markup=keyboard)
-
-@router.callback_query()
-async def handle_callback(callback_query):
-    if callback_query.data == "btn1":
-        await callback_query.message.answer("Вы нажали Кнопка 1")
-    elif callback_query.data == "btn2":
-        await callback_query.message.answer("Вы нажали Кнопка 2")
 
 @router.message(Command("set_profile"))
 async def set_profile(message: Message, state: FSMContext):
