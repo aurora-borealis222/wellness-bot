@@ -77,13 +77,13 @@ async def get_temperature_by_city(city_name: str, state_code: str = '', country_
 
 def profile_to_str(profile: dict[str, Any]) -> str:
     result = (
-        f"{profile_labels_dict.get("weight")}: {profile["weight"]}\n"
-        f"{profile_labels_dict.get("height")}: {profile["height"]}\n"
-        f"{profile_labels_dict.get("age")}: {profile["age"]}\n"
-        f"{profile_labels_dict.get("activity")}: {profile["activity"]}\n"
-        f"{profile_labels_dict.get("city")}: {profile["city"]}\n"
-        f"{profile_labels_dict.get("water_goal")}: {profile["water_goal"]}\n"
-        f"{profile_labels_dict.get("calories_goal")}: {profile["calories_goal"]}"
+        f"{profile_labels_dict.get('weight')}: {profile['weight']}\n"
+        f"{profile_labels_dict.get('height')}: {profile['height']}\n"
+        f"{profile_labels_dict.get('age')}: {profile['age']}\n"
+        f"{profile_labels_dict.get('activity')}: {profile['activity']}\n"
+        f"{profile_labels_dict.get('city')}: {profile['city']}\n"
+        f"{profile_labels_dict.get('water_goal')}: {profile['water_goal']}\n"
+        f"{profile_labels_dict.get('calories_goal')}: {profile['calories_goal']}"
     )
     return result
 
