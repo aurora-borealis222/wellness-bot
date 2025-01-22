@@ -1,0 +1,6 @@
+aiogram==3.*
+aiohttp
+python-dotenv
+googletrans
+asyncio
+aioschedule
